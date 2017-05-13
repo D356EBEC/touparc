@@ -1,0 +1,30 @@
+;;(setq load-path (cons "~/.emacs.d/org-mode/lisp" load-path)) 
+;;(add-to-list 'load-path "~/.emacs.d/org-mode/lisp" t)
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(define-key global-map [f12] 'org-capture)
+(define-key global-map "\C-cc" 'org-capture)
+(setq org-directory "d:/users/xq/dropbox/emacs/org/")
+(setq org-capture-templates
+      (quote (("i" "idea" entry (file (concat org-directory "/idea.org.gpg"))
+             	 "*  %^{Title} %?\n%U\n%a\n")
+      	      ("t" "todo" entry (file (concat org-directory "/gtd.org.gpg"))
+                "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("n" "note" entry (file (concat org-directory "/note.org.gpg"))
+               "* %? :NOTE:\n%U\n%a\n" :clock-in t :clock-resume t)
+              ("j" "Journal" entry (file+datetree (concat org-directory "/journal.org.gpg"))
+               "*  %^{Title} %?\n%U\n%a\n" :clock-in t :clock-resume t)
+	      ("b" "Book" entry (file+datetree \t \t (concat org-directory "/book.org.gpg"))
+	       "* Topic: %^{Description}  %^g %? Added: %U") 
+              )))
+(setq org-todo-keywords
+'((sequence "TODO(t)" "STARTED(s!)" "WAITING(w@/!)" "|" "DONE(d!)" "CANCELLED(c@)")))
+;; 记录时间
+(setq org-log-done 'time)
+;;记录提示信息
+(setq org-log-done 'note)
+
+;;(load-library "d:/users/xq/dropbox/.emacs.d/el/org-bullets.el")
+;;(add-to-list 'load-path "~/dropxbox/.emacs.d/lisp")
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(add-hook 'org-mode-hook (lambda () (setq truncate-lines nil)))
