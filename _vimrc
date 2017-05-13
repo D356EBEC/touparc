@@ -23,6 +23,7 @@ set undodir=~/.vim/.undo//
 set backupdir=~/.vim/.backup//
 set directory=~/.vim/.swp//
 
+"for encoding
 let fencview_autodetect=1
 let fencview_auto_patterns='*.log,*.txt,*.tex,*.htm{l\=},*.asp'
                            \.',README,CHANGES,INSTALL'
